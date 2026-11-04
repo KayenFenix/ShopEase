@@ -1,4 +1,4 @@
-# ShopEase - E-commerce Store
+# ShopEase - E-commerce Store akzhol
 
 Team: Abbaz Meirzhan, Temirbek Akzhol
 
