@@ -1,117 +1,89 @@
-# 🛒 ShopEase — E-Commerce Web Store
+# ShopEase - E-commerce Store
 
-ShopEase — это полнофункциональный интернет-магазин, разработанный на основе Java Spring Boot с классической многослойной архитектурой. Проект предоставляет полноценный пользовательский путь: от просмотра каталога до оформления заказа и отслеживания его статуса, а также содержит удобную панель администратора для управления товарами, категориями и заказами.
+Team: Abbaz Meirzhan, Temirbek Akzhol
 
-📌 Основные возможности
+Figma design: https://www.figma.com/design/8ITURNS5deKCwaJaK9JX6N/Untitled?node-id=0-1&t=n0SROHlZR4bniJ7C-1
 
-👤 Для покупателей (CUSTOMER):
+GitHub repository: https://github.com/KayenFenix/ShopEase
 
-Аутентификация: Регистрация и вход в систему с защищенным хэшированием паролей (BCrypt).
+Project description
 
-Каталог товаров: Просмотр списка товаров с пагинацией, фильтрация по категориям и поиск по названию.
+ShopEase is a full-stack online store built with Java Spring Boot that lets customers browse a product catalog, search and filter items, add products to a shopping cart, and place orders through a simple checkout process. Registered customers can manage their profile, track order history, and follow the status of each order. Administrators get a dedicated panel for managing products, categories, stock levels, and incoming orders.
 
-Карточка товара: Детальное описание, наличие на складе, актуальная цена и возможность добавления в корзину.
+The application follows a layered Spring architecture (Controller, Service, Repository, Database) and stores all data in a PostgreSQL database through Spring Data JPA. Authentication and role-based authorization are handled by Spring Security, so customers and administrators see only the functions that belong to their role. The user interface is rendered with Thymeleaf and styled with HTML, CSS, and JavaScript, following a clickable Figma prototype designed before development.
 
-Корзина: Добавление, удаление, изменение количества товаров и динамический подсчет итоговой стоимости.
+The project demonstrates the main skills of the course: designing entities and relations, implementing business logic in the service layer, validating user input, securing pages by role, and testing the application with JUnit and Postman.
 
-Оформление заказа: Указание деталей доставки, автоматическое уменьшение остатков на складе.
+Target users
 
-История заказов: Отслеживание статуса текущих и прошлых заказов (NEW, PAID, SHIPPED, DELIVERED, CANCELLED).
+- Customers who want to buy products online quickly and track their orders.
+- Administrators and store managers who maintain products, prices, stock, and process orders.
+- Small businesses that need a simple store of their own.
 
-⚙️ Для администраторов (ADMIN):
+Functional requirements
 
-Управление каталогом: Добавление, редактирование, удаление товаров и категорий.
+1. Registration and login with hashed passwords (BCrypt).
+2. Role-based access: CUSTOMER and ADMIN.
+3. Product catalog with images, price, description, category filter, search, and pagination.
+4. Product details page with stock availability and an Add to cart button.
+5. Shopping cart: add, remove, change quantity, see the total price.
+6. Checkout and orders: delivery details, order placement, automatic stock reduction.
+7. Order history and statuses: NEW, PAID, SHIPPED, DELIVERED, CANCELLED.
+8. Admin product management: create, edit, delete products and categories, update stock and prices.
+9. Admin order management: view all orders and change their status.
+10. Input validation and error handling with clear messages.
 
-Управление остатками: Изменение количества товаров на складе и цен.
+Technology stack
 
-Управление заказами: Просмотр всех заказов пользователей и сменяемость их статусов.
+- Programming language: Java 17
+- Backend framework: Spring Boot
+- Web layer: Spring MVC / Spring Web
+- Frontend: Thymeleaf, HTML, CSS, JavaScript
+- Database: PostgreSQL
+- Persistence: Spring Data JPA / Hibernate
+- Build tool: Maven
+- Version control: Git / GitHub
+- Testing: JUnit, Postman
+- Design: Figma
 
-🛠 Стек технологий
+Spring Boot dependencies
 
-Backend: Java 17, Spring Boot, Spring MVC, Spring Security, Spring Data JPA, Hibernate, Lombok, Spring Validation
+- Spring Web
+- Spring Data JPA
+- Thymeleaf
+- PostgreSQL Driver
+- Lombok
+- Spring Validation
+- Spring Security
+- Spring Boot Starter Test
 
-Frontend: Thymeleaf (Server-Side Rendering), HTML5, CSS3, JavaScript (Fetch API)
+Architecture
 
-База данных: PostgreSQL
+Frontend -> Controller -> Service -> Repository -> Database (PostgreSQL)
 
-Сборка и зависимость: Maven
+- Frontend: Thymeleaf pages, CSS, JavaScript. Displays pages and sends user actions to the server.
+- Controller: processes HTTP requests and returns views or responses.
+- Service: implements business logic (cart total, stock check, order creation, order status).
+- Repository: handles database access through Spring Data JPA.
+- Entity / Model: represents application data (User, Role, Category, Product, Cart, CartItem, Order, OrderItem).
+- Database: stores all information in PostgreSQL tables with relations and constraints.
 
-Тестирование: JUnit, Mockito, Postman
+Figma screens
 
-Дизайн: Figma
+Home, Product Catalog, Product Details, Shopping Cart, Checkout, Order Confirmation, Login / Registration, My Orders, Admin Panel, Customer Support.
 
-🏛 Архитектура приложения
+Team responsibilities
 
-Проект использует классическую многослойную архитектуру (Layered Architecture):
+- Abbaz Meirzhan, Backend / Database Developer: database design, JPA entities, repositories, service layer, Spring Validation, JUnit tests, GitHub repository setup.
+- Temirbek Akzhol, Frontend / UX/UI and Integration Developer: Figma design and prototype, Thymeleaf views, HTML/CSS/JavaScript, controllers, Spring Security configuration, Postman and integration testing.
 
-$$\text{Client (Thymeleaf / JS)} \longleftrightarrow \text{Controller} \longleftrightarrow \text{Service} \longleftrightarrow \text{Repository} \longleftrightarrow \text{PostgreSQL}$$
+Development roadmap
 
-Frontend: Отображение Thymeleaf-шаблонов и обработка динамических запросов через JS.
-
-Controller: Обработка HTTP-запросов (ProductController, CartController, OrderController, AuthController, AdminController).
-
-Service: Бизнес-логика (расчет суммы заказа, контроль остатков на складе, смена статуса заказа).
-
-Repository: Взаимодействие с базами данных с помощью Spring Data JPA (ProductRepository, UserRepository, OrderRepository).
-
-Entity / DTO: Модели данных (User, Role, Category, Product, Cart, CartItem, Order, OrderItem).
-
-📂 Структура проекта
-
-com.shopease
- ├── config/          # Конфигурация Spring Security и приложения
- ├── controller/      # MVC и REST контроллеры
- ├── dto/             # Data Transfer Objects
- ├── entity/          # JPA Сущности
- ├── exception/       # Обработка исключений
- ├── repository/      # Репозитории Spring Data JPA
- └── service/         # Сервисный слой бизнес-логики
-
-
-🚀 Запуск проекта локально
-
-Требования:
-
-Java 17 или выше
-
-Maven 3.8+
-
-Установленный и запущенный PostgreSQL
-
-Шаги для запуска:
-
-Клонируйте репозиторий:
-
-git clone https://github.com/your-username/shopease.git
-cd shopease
-
-
-Настройте подключение к БД:
-Отредактируйте файл src/main/resources/application.properties (или application.yml):
-
-spring.datasource.url=jdbc:postgresql://localhost:5432/shopease_db
-spring.datasource.username=YOUR_POSTGRES_USER
-spring.datasource.password=YOUR_POSTGRES_PASSWORD
-spring.jpa.hibernate.ddl-auto=update
-
-
-Соберите и запустите проект:
-
-mvn clean install
-mvn spring-boot:run
-
-
-Откройте в браузере:
-Перейдите по адресу http://localhost:8080
-
-👥 Команда разработки
-
-[Студент 1 — Имя Фамилия] — Backend & Database Developer (Проектирование БД, сущности JPA, бизнес-логика, репозитории, JUnit тесты).
-
-[Студент 2 — Имя Фамилия] — Frontend & Integration Developer (Прототип Figma, Thymeleaf-шаблоны, Spring Security, контроллеры, Postman тесты).
-
-🎨 Ссылки и ресурсы
-
-🎨 Прототип в Figma: [Вставить ссылку на Figma]
-
-📄 Документация / План проекта: [Вставить ссылку, если есть]
+1. Project requirements and planning: both students.
+2. UX/UI design: Temirbek Akzhol.
+3. Spring Boot project setup: Abbaz Meirzhan.
+4. Database and entity development: Abbaz Meirzhan.
+5. Repository, Service, Controller implementation: Abbaz Meirzhan (Repository, Service), Temirbek Akzhol (Controller, Security).
+6. Frontend development: Temirbek Akzhol.
+7. Integration and testing: Abbaz Meirzhan (JUnit), Temirbek Akzhol (Postman, integration).
+8. Final Exam presentation and demonstration: both students.
